@@ -1,0 +1,14 @@
+name: Run tests for package
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run Tests
+        run: |
+          go test

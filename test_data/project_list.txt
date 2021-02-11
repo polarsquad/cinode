@@ -1,0 +1,62 @@
+[
+    {
+        "CompanyID": 1234,
+        "CustomerID": 78901,
+        "ID": 84231,
+        "Title": "Work for Client 1",
+        "Description": "Moving bits and bytes",
+        "Links": [
+            {
+                "Href": "/v0.1/companies/1234/projects/84231",
+                "Rel": "self",
+                "Methods": [
+                    "GET",
+                    "PUT",
+                    "POST",
+                    "DELETE"
+                ]
+            }
+        ],
+        "SelfHref": ""
+    },
+    {
+        "CompanyID": 1234,
+        "CustomerID": 78902,
+        "ID": 85960,
+        "Title": "Work for Client 2",
+        "Description": "Building Cloud castle",
+        "Links": [
+            {
+                "Href": "/v0.1/companies/1234/projects/85960",
+                "Rel": "self",
+                "Methods": [
+                    "GET",
+                    "PUT",
+                    "POST",
+                    "DELETE"
+                ]
+            }
+        ],
+        "SelfHref": ""
+    },
+    {
+        "CompanyID": 1234,
+        "CustomerID": 78902,
+        "ID": 85961,
+        "Title": "Rework for Client 2",
+        "Description": "Renovating Cloud Castle",
+        "Links": [
+            {
+                "Href": "/v0.1/companies/1234/projects/85961",
+                "Rel": "self",
+                "Methods": [
+                    "GET",
+                    "PUT",
+                    "POST",
+                    "DELETE"
+                ]
+            }
+        ],
+        "SelfHref": ""
+    }
+]
