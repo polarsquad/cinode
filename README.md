@@ -15,3 +15,9 @@ The initialisation of the client is done by:
 ```golang
 client, err := cinode.NewClient([AccessID], [AccessSecret], [CompanyID]
 ```
+
+After fething the Access Token it is valid for 120 seconds, after which a new token can be fetched, or then use `client.RefreshToken() function.  
+When acquiring Access Token one also receives a `RefreshToken`, which can be used to refresh the Access Token.  
+```golang
+err := client.RefreshToken()
+```

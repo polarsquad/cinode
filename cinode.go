@@ -51,9 +51,9 @@ func NewClient(accessID string, accessSecret string, companyID int32) (*Client, 
 		Auth: &Auth{
 			AccessID:     accessID,
 			AccessSecret: accessSecret,
-			Token: &Token{
-				AccessToken:  "1qaz2wsx",
-				RefreshToken: "3edc4rfv",
+			Token:        &Token{
+				// AccessToken:  "",
+				// RefreshToken: "",
 			},
 		},
 	}

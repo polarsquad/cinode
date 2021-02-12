@@ -12,3 +12,6 @@ jobs:
       - name: Run Tests
         run: |
           go test
+      - name: Run Coverage Test
+        run: |
+          go test --cover
