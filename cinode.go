@@ -37,8 +37,8 @@ type Token struct {
 }
 
 // NewClient is ...
-func NewClient(id string, secret string, companyID int32) (*Client, error) {
-	if id == "" || secret == "" || companyID == 0 {
+func NewClient(accessID string, accessSecret string, companyID int32) (*Client, error) {
+	if accessID == "" || accessSecret == "" || companyID == 0 {
 		return nil, errors.New("Access ID, Access Secret or CompanyID missing")
 	}
 
@@ -49,8 +49,8 @@ func NewClient(id string, secret string, companyID int32) (*Client, error) {
 			Timeout: time.Minute,
 		},
 		Auth: &Auth{
-			AccessID:     id,
-			AccessSecret: secret,
+			AccessID:     accessID,
+			AccessSecret: accessSecret,
 			Token: &Token{
 				AccessToken:  "1qaz2wsx",
 				RefreshToken: "3edc4rfv",
