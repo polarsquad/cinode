@@ -8,14 +8,12 @@ import (
 	"net/http"
 )
 
-type dataResponse struct {
-	Code int         `json:"code"`
-	Data interface{} `json:"data"`
-}
-
 func (c *Client) getToken() error {
-	req, err := http.NewRequest("GET", tokenURL, nil)
+	if c.Auth.AccessID == "" || c.Auth.AccessSecret == "" {
+		return fmt.Errorf("AccessID and/or AccessSecret are empty")
+	}
 
+	req, err := http.NewRequest("GET", tokenURL, nil)
 	if err != nil {
 		log.Fatal(err)
 		return err
@@ -30,7 +28,8 @@ func (c *Client) getToken() error {
 	}
 	defer resp.Body.Close()
 
-	if err = json.NewDecoder(resp.Body).Decode(&c.Auth.AccessToken); err != nil {
+	if err = json.NewDecoder(resp.Body).Decode(&c.Auth.Token); err != nil {
+		log.Fatal(err)
 		return err
 	}
 
@@ -39,9 +38,17 @@ func (c *Client) getToken() error {
 
 // RefreshToken is used to refresh expired access token
 func (c *Client) RefreshToken() error {
+	if c.Auth.AccessToken == "" || c.Auth.RefreshToken == "" {
+		return fmt.Errorf("AccessToken or RefreshToken empty")
+	}
+
 	reqBody, err := json.Marshal(map[string]string{
-		"refreshToken": c.Auth.RefreshToken,
+		"refreshToken": c.Auth.Token.RefreshToken,
 	})
+	if err != nil {
+		log.Fatalf("Marshall Req Body, error: %v", err)
+		return err
+	}
 
 	resp, err := c.HTTPClient.Post(tokenRefreshURL, "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
@@ -50,7 +57,7 @@ func (c *Client) RefreshToken() error {
 	}
 	defer resp.Body.Close()
 
-	if err = json.NewDecoder(resp.Body).Decode(&c.Auth.AccessToken); err != nil {
+	if err = json.NewDecoder(resp.Body).Decode(&c.Auth.Token); err != nil {
 		return err
 	}
 
