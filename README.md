@@ -12,4 +12,6 @@ To initialise the client, one needs to have the following information from Cinod
 - Company ID
 
 The initialisation of the client is done by:  
-`client, err := cinode.NewClient([AccessID], [AccessSecret], [CompanyID]`
+```golang
+client, err := cinode.NewClient([AccessID], [AccessSecret], [CompanyID]
+```
